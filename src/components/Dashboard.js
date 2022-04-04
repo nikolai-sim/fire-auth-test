@@ -1,16 +1,26 @@
 import React, { useState } from 'react'
 import { Card, Button, Alert } from 'react-bootstrap'
 import { useAuth } from './contexts/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function Dashboard() {
 
+  const navigate = useNavigate()
+
   const [error, setError] = useState('')
-  const { currentUser } = useAuth()
+  const { currentUser, logout } = useAuth()
 
-  const handleClick = (e) => {
-    
+  async function handleClick(){
+    setError('')
 
-  }
+    try {
+      await logout()
+      navigate('/login')
+    } catch {
+      setError('Failed to Log Out')
+    }
+    }
+
   return (
     <>
     <Card>
