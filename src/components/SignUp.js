@@ -40,15 +40,15 @@ export default function SignUp() {
         {error && <Alert variant='danger'>{error}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group id='email'>
-          <Form.Label>Email</Form.Label>
-          <Form.Control type='email' ref={emailRef} required/>
+            <Form.Label>Email</Form.Label>
+            <Form.Control type='email' ref={emailRef} required/>
           </Form.Group>
           <Form.Group id='password'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control type='password' ref={passwordRef} required/>
+            <Form.Label>Password</Form.Label>
+            <Form.Control type='password' ref={passwordRef} required/>
           </Form.Group>
-          <Form.Group id='confirm-password'>
-          <Form.Label>Confirm Password</Form.Label>
+            <Form.Group id='confirm-password'>
+            <Form.Label>Confirm Password</Form.Label>
           <Form.Control type='password' ref={passwordConfirmRef} required/>
           </Form.Group>
           <Form.Group>
