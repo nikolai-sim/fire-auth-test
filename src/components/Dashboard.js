@@ -20,7 +20,7 @@ export default function Dashboard() {
     }
   }
 
-  return (
+  return currentUser ? (
     <>
       <Card>
         <Card.Body>
@@ -36,5 +36,7 @@ export default function Dashboard() {
         </Button>
       </div>
     </>
+  ) : (
+    navigate("/login")
   );
 }
