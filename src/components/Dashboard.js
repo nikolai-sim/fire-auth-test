@@ -9,7 +9,7 @@ export default function Dashboard() {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
 
-  async function handleClick() {
+  async function handleLogout() {
     setError("");
 
     try {
@@ -31,7 +31,7 @@ export default function Dashboard() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        <Button variant="link" onClick={handleClick}>
+        <Button variant="link" onClick={handleLogout}>
           Log Out
         </Button>
       </div>
