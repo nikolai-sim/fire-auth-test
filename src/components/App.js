@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
+import ResetPassword from "./ResetPassword";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             </Route>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/resetpassword" element={<ResetPassword />} />
           </Routes>
         </AuthProvider>
       </div>
