@@ -4,20 +4,20 @@ import { useAuth } from "./contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const emailRef = useRef();
+  const emailRef = useRef<HTMLInputElement>(null);
   const { resetPassword } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     try {
       setError("");
       setLoading(true);
-      await resetPassword(emailRef.current.value);
-      setSuccess(`A reset email has been sent to ${emailRef.current.value}`);
+      await resetPassword(emailRef.current?.value);
+      setSuccess(`A reset email has been sent to ${emailRef.current?.value}`);
     } catch {
       setError("Failed to reset password");
     }
