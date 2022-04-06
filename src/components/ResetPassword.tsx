@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 export default function Login() {
   const emailRef = useRef<HTMLInputElement>(null);
   const { resetPassword } = useAuth();
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<string>("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
