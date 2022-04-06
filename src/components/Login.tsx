@@ -6,22 +6,22 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
   const navigate = useNavigate();
 
-  const emailRef = useRef();
-  const { resetPassword } = useAuth();
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const { login } = useAuth();
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     try {
       setError("");
       setLoading(true);
-      await resetPassword(emailRef.current.value);
-      setSuccess(`A reset email has been sent to ${emailRef.current.value}`);
+      await login(emailRef.current?.value, passwordRef.current?.value);
+      navigate("/");
     } catch {
-      setError("Failed to reset password");
+      setError("Failed to sign in");
     }
 
     setLoading(false);
@@ -31,20 +31,26 @@ export default function Login() {
     <>
       <Card>
         <Card.Body>
-          <h2 className="text-center mb-4">Reset Password</h2>
+          <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
-          {success && <Alert variant="secondary">{success}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
+            <Form.Group id="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" ref={passwordRef} required />
+            </Form.Group>
             <Form.Group>
               <Button className="w-100 mt-2" type="submit" disabled={loading}>
-                Send Reset Email
+                Login
               </Button>
             </Form.Group>
           </Form>
+          <div className="wd-100 text-center mt-3">
+            <Link to="/resetpassword">Forgot your Password?</Link>
+          </div>
         </Card.Body>
       </Card>
       <div className="wd-100 text-center mt-2">

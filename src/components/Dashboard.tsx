@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Card, Button, Alert } from "react-bootstrap";
 import { useAuth } from "./contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function Dashboard() {
   const navigate = useNavigate();
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
   const { currentUser, logout } = useAuth();
 
   async function handleLogout() {
