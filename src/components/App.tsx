@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import ResetPassword from "./ResetPassword";
+import AddProfile from "./AddProfile";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
             <Route path="/" element={<PrivateRoute />}>
               <Route path="/" element={<Dashboard />} />
             </Route>
+            {/* <Route path="/addprofile" element={<PrivateRoute />}> */}
+            <Route path="/addprofile" element={<AddProfile />} />
+            {/* </Route> */}
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/resetpassword" element={<ResetPassword />} />
