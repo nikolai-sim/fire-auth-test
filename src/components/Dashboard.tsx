@@ -9,8 +9,6 @@ export default function Dashboard() {
   const [error, setError] = useState<string>("");
   const { currentUser, logout } = useAuth();
 
-  console.log(currentUser);
-
   async function handleLogout() {
     setError("");
 
