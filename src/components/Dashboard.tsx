@@ -1,13 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, Button, Alert } from "react-bootstrap";
 import { useAuth } from "./contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { User } from "@firebase/auth-types";
 
 export default function Dashboard() {
   const navigate = useNavigate();
 
   const [error, setError] = useState<string>("");
   const { currentUser, logout } = useAuth();
+
+  async function getUser(user: string) {
+    const docRef = doc(db, "users", user!);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }
+
+  useEffect(() => {
+    currentUser && getUser(currentUser.uid);
+  }, []);
 
   async function handleLogout() {
     setError("");

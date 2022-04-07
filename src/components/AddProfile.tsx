@@ -28,7 +28,7 @@ export default function AddProfile() {
         uid: currentUser?.uid,
       });
       navigate("/");
-      console.log("Document written with ID: ");
+      console.log(`Document written with ID:  ${currentUser!.uid}`);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
