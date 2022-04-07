@@ -3,7 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "./contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 export default function AddProfile() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function AddProfile() {
     try {
       setError("");
       setLoading(true);
-      const docRef = await addDoc(collection(db, "users"), {
+      await setDoc(doc(db, "users", currentUser!.uid), {
         firstName: firstNameRef.current?.value,
         lastName: lasNameRef.current?.value,
         starSign: starSignRef.current?.value,
@@ -28,7 +28,7 @@ export default function AddProfile() {
         uid: currentUser?.uid,
       });
       navigate("/");
-      console.log("Document written with ID: ", docRef.id);
+      console.log("Document written with ID: ");
     } catch (e) {
       console.error("Error adding document: ", e);
     }
